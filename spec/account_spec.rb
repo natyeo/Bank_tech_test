@@ -27,5 +27,11 @@ describe 'Account' do
       account.deposit(500, '16/12/2019')
       expect(account.statement).to eq ['16/12/2019 || 500.00 || 500.00']
     end
-  end 
+
+    it 'prints "16/12/2019 || 200.00 || 300.00" when 500 deposited and 200 withdrawn' do
+      account.deposit(500, '16/12/2019')
+      account.withdraw(200, '16/12/2019')
+      expect(account.statement).to include '16/12/2019 || 200.00 || 300.00'
+    end
+  end
 end
