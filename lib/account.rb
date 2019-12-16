@@ -29,7 +29,7 @@ class Account
   private
 
   def print_statement
-    @statement.reverse.join("\n")
+    "date || credit || debit || balance\n#{@statement.reverse.join("\n")}"
   end
 
 end
