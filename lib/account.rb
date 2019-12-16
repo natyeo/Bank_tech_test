@@ -29,7 +29,7 @@ class Account
   private
 
   def print_statement
-    @statement
+    @statement.reverse.join("\n")
   end
 
 end

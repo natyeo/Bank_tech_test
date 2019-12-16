@@ -25,13 +25,19 @@ describe 'Account' do
   describe '#statement' do
     it 'prints "16/12/2019 || 500.00 || 500.00" when 500 deposited' do
       account.deposit(500)
-      expect(account.statement).to eq ['16/12/2019 || 500.00 || 500.00']
+      expect(account.statement).to include '16/12/2019 || 500.00 || 500.00'
     end
 
     it 'prints "16/12/2019 || 200.00 || 300.00" when 500 deposited and 200 withdrawn' do
       account.deposit(500)
       account.withdraw(200)
       expect(account.statement).to include '16/12/2019 || 200.00 || 300.00'
+    end
+
+    it 'prints "16/12/2019 || 400.00 || 100.00\n 16/12/2019 || 500.00 || 500.00" when 500 deposited and 400 withdrawn' do
+      account.deposit(500)
+      account.withdraw(400)
+      expect(account.statement).to eq "16/12/2019 || 400.00 || 100.00\n16/12/2019 || 500.00 || 500.00"
     end
   end
 end
