@@ -2,6 +2,8 @@ class Account
 
   DEFAULT_BAL = 0
 
+  attr_reader :statement
+
   def initialize(balance = DEFAULT_BAL)
     @balance = balance
     @statement = []
@@ -23,13 +25,6 @@ class Account
   end
 
   def statement
-    print_statement
+    @statement
   end
-
-  private
-
-  def print_statement
-    "date || credit || debit || balance\n#{@statement.reverse.join("\n")}"
-  end
-
 end
