@@ -11,7 +11,11 @@ class Account
   end
 
   def withdraw(amount, date)
-    @balance -= amount
+    if amount > @balance
+      raise "Not enough funds, current balance: #{@balance}"
+    else
+      @balance -= amount
+    end
   end
 
   def show_balance

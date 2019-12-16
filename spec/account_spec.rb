@@ -16,5 +16,9 @@ describe 'Account' do
       account.withdraw(300, '16/12/2019')
       expect(account.show_balance).to eq 200
     end
+
+    it 'raises an error if withdrawal amount is more than balance' do
+      expect { account.withdraw(200, '16/12/2019') }.to raise_error 'Not enough funds, current balance: 0'
+    end
   end
 end
