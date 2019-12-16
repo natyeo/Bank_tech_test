@@ -4,10 +4,12 @@ class Account
 
   def initialize(balance = DEFAULT_BAL)
     @balance = balance
+    @statement = []
   end
 
   def deposit(amount, date)
     @balance += amount
+    @statement << "#{date} || #{amount}.00 || #{@balance}.00"
   end
 
   def withdraw(amount, date)
@@ -20,6 +22,16 @@ class Account
 
   def show_balance
     @balance
+  end
+
+  def statement
+    print_statement
+  end
+
+  private
+
+  def print_statement
+    @statement
   end
 
 end

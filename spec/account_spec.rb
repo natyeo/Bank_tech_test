@@ -21,4 +21,11 @@ describe 'Account' do
       expect { account.withdraw(200, '16/12/2019') }.to raise_error 'Not enough funds, current balance: 0'
     end
   end
+
+  describe '#statement' do
+    it 'prints "16/12/2019 || 500.00 || 500.00" when 500 deposited' do
+      account.deposit(500, '16/12/2019')
+      expect(account.statement).to eq ['16/12/2019 || 500.00 || 500.00']
+    end
+  end 
 end
