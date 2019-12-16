@@ -23,26 +23,22 @@ describe 'Account' do
   end
 
   describe '#statement' do
-    it 'prints "16/12/2019 || 500.00 || 500.00" when 500 deposited' do
-      account.deposit(500)
-      expect(account.statement).to include '16/12/2019 || 500.00 || 500.00'
+    it 'prints "16/12/2019 || 1000.00 || || 1000.00" when 1000 deposited' do
+      account.deposit(1000)
+      expect(account.statement).to include '16/12/2019 || 1000.00 || || 1000.00'
     end
 
-    it 'prints "16/12/2019 || 200.00 || 300.00" when 500 deposited and 200 withdrawn' do
-      account.deposit(500)
-      account.withdraw(200)
-      expect(account.statement).to include '16/12/2019 || 200.00 || 300.00'
-    end
-
-    it 'prints "16/12/2019 || 400.00 || 100.00\n 16/12/2019 || 500.00 || 500.00" when 500 deposited and 400 withdrawn' do
-      account.deposit(500)
-      account.withdraw(400)
-      expect(account.statement).to include "16/12/2019 || 400.00 || 100.00\n16/12/2019 || 500.00 || 500.00"
+    it 'prints account statement newest first' do
+      account.deposit(2000)
+      account.withdraw(500)
+      expect(account.statement).to include "16/12/2019 || || 500.00 || 1500.00\n16/12/2019 || 2000.00 || || 2000.00"
     end
 
     it 'prints statement with headers' do
-      account.deposit(300)
-      expect(account.statement).to eq "date || credit || debit || balance\n16/12/2019 || 300.00 || 300.00"
+      account.deposit(1000)
+      account.deposit(2000)
+      account.withdraw(500)
+      expect(account.statement).to eq "date || credit || debit || balance\n16/12/2019 || || 500.00 || 2500.00\n16/12/2019 || 2000.00 || || 3000.00\n16/12/2019 || 1000.00 || || 1000.00"
     end
   end
 end
