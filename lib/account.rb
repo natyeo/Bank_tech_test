@@ -1,5 +1,4 @@
 class Account
-
   DEFAULT_BAL = 0
 
   attr_reader :statement
@@ -10,21 +9,22 @@ class Account
   end
 
   def deposit(amount)
-    @balance += amount
-    @statement << "#{Time.now.strftime('%d/%m/%Y')} || #{amount}.00 || || #{@balance}.00"
+    @statement << "#{Time.now.strftime('%d/%m/%Y')} || #{amount}.00 || || #{@balance += amount}.00"
   end
 
   def withdraw(amount)
-    raise "Not enough funds, current balance: #{@balance}" if amount > @balance
-    @balance -= amount
-    @statement << "#{Time.now.strftime('%d/%m/%Y')} || || #{amount}.00 || #{@balance}.00"
+    raise "Not enough funds, current balance: #{@balance}" if not_enough_funds?(amount)
+
+    @statement << "#{Time.now.strftime('%d/%m/%Y')} || || #{amount}.00 || #{@balance -= amount}.00"
   end
 
   def show_balance
     @balance
   end
 
-  def statement
-    @statement
+  private
+
+  def not_enough_funds?(amount)
+    amount > @balance
   end
 end

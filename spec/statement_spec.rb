@@ -1,7 +1,7 @@
 require 'statement'
 
 describe Statement do
-  let(:account) { double :account}
+  let(:account) { double :account }
   let(:statement) { Statement.new(account) }
 
   describe '#print' do
