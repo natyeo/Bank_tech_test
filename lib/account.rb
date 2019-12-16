@@ -7,15 +7,15 @@ class Account
     @statement = []
   end
 
-  def deposit(amount, date)
+  def deposit(amount)
     @balance += amount
-    @statement << "#{date} || #{amount}.00 || #{@balance}.00"
+    @statement << "#{Time.now.strftime('%d/%m/%Y')} || #{amount}.00 || #{@balance}.00"
   end
 
-  def withdraw(amount, date)
+  def withdraw(amount)
     raise "Not enough funds, current balance: #{@balance}" if amount > @balance
     @balance -= amount
-    @statement << "#{date} || #{amount}.00 || #{@balance}.00"
+    @statement << "#{Time.now.strftime('%d/%m/%Y')} || #{amount}.00 || #{@balance}.00"
   end
 
   def show_balance
