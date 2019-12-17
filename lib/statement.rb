@@ -21,7 +21,7 @@ class Statement
   def print_statement
     headers = "date || credit || debit || balance\n"
     entries = format_statement(@account.statement)
-    headers + entries.reverse.join("\n")
+    print headers + entries.reverse.join("\n")
   end
 
   private
