@@ -31,6 +31,6 @@ class Statement
   end
 
   def format_to_2dp(amount)
-    '%.2f' % amount
+    format('%0.2f', amount)
   end
 end

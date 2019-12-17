@@ -9,13 +9,13 @@ class Account
   end
 
   def deposit(amount)
-    @statement << { date: Time.now, transaction: :deposit, amount: amount, balance: @balance += amount }
+    @statement << { date: Time.now, transaction: :deposit, amount: amount.to_f, balance: @balance += amount }
   end
 
   def withdraw(amount)
-    raise "Not enough funds, current balance: £#{@balance}" if not_enough_funds?(amount)
+    raise "Not enough funds, current balance: #{@balance}" if not_enough_funds?(amount)
 
-    @statement << { date: Time.now, transaction: :withdrawal, amount: amount, balance: @balance -= amount }
+    @statement << { date: Time.now, transaction: :withdrawal, amount: amount.to_f, balance: @balance -= amount }
   end
 
   def show_balance
