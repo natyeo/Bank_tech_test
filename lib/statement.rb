@@ -1,5 +1,8 @@
 require_relative 'account'
 class Statement
+
+  HEADER = "date || credit || debit || balance\n"
+
   def initialize(account)
     @account = account
   end
@@ -19,9 +22,8 @@ class Statement
   end
 
   def print_statement
-    headers = "date || credit || debit || balance\n"
     entries = format_statement(@account.statement)
-    print headers + entries.reverse.join("\n")
+    print HEADER + entries.reverse.join("\n")
   end
 
   private
