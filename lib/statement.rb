@@ -4,7 +4,7 @@ class Statement
     @account = account
   end
 
-  def format_records(statement)
+  def format_statement(statement)
     statement.map do |entry|
       date = format_date(entry[:date])
       amount = format_to_2dp(entry[:amount])
@@ -18,10 +18,10 @@ class Statement
     end
   end
 
-  def print
+  def print_statement
     headers = "date || credit || debit || balance\n"
-    records = format_records(@account.statement)
-    headers + records.reverse.join("\n")
+    entries = format_statement(@account.statement)
+    headers + entries.reverse.join("\n")
   end
 
   private
@@ -30,7 +30,7 @@ class Statement
     date.strftime('%d/%m/%Y')
   end
 
-  def format_to_2dp(amount)
-    format('%0.2f', amount)
+  def format_to_2dp(value)
+    format('%0.2f', value)
   end
 end
