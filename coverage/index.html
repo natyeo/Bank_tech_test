@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2019-12-17T16:38:05+00:00">2019-12-17T16:38:05+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2019-12-17T16:58:28+00:00">2019-12-17T16:58:28+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -768,13 +768,13 @@
         <li class="covered" data-hits="1" data-linenumber="9">
           <span class="hits">1</span>
           
-          <code class="ruby">      allow(account).to receive(:statement).and_return [{ date: Time.now, transaction: :deposit, amount: 1000, balance: 1000 }, { date: Time.now, transaction: :deposit, amount: 2000, balance: 3000 }, { date: Time.now, transaction: :withdrawal, amount: 500, balance: 2500 }]</code>
+          <code class="ruby">      allow(account).to receive(:statement).and_return [{ date: Time.new(2019, 12, 16), transaction: :deposit, amount: 1000, balance: 1000 }, { date: Time.new(2019, 12, 17), transaction: :deposit, amount: 2000, balance: 3000 }, { date: Time.new(2019, 12, 18), transaction: :withdrawal, amount: 500, balance: 2500 }]</code>
         </li>
       
         <li class="covered" data-hits="2" data-linenumber="10">
           <span class="hits">2</span>
           
-          <code class="ruby">      expect { statement.print_statement }.to output(&quot;date || credit || debit || balance\n#{Time.now.strftime(&#39;%d/%m/%Y&#39;)} || || 500.00 || 2500.00\n#{Time.now.strftime(&#39;%d/%m/%Y&#39;)} || 2000.00 || || 3000.00\n#{Time.now.strftime(&#39;%d/%m/%Y&#39;)} || 1000.00 || || 1000.00&quot;).to_stdout</code>
+          <code class="ruby">      expect { statement.print_statement }.to output(&quot;date || credit || debit || balance\n18/12/2019 || || 500.00 || 2500.00\n17/12/2019 || 2000.00 || || 3000.00\n16/12/2019 || 1000.00 || || 1000.00&quot;).to_stdout</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="11">
