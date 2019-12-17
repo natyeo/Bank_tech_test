@@ -9,13 +9,13 @@ class Account
   end
 
   def deposit(amount)
-    @statement << "#{date} || #{amount}.00 || || #{@balance += amount}.00"
+    @statement << "#{date} || #{format_to_2dp(amount)} || || #{format_to_2dp(@balance += amount)}"
   end
 
   def withdraw(amount)
-    raise "Not enough funds, current balance: #{@balance}" if not_enough_funds?(amount)
+    raise "Not enough funds, current balance: #{format_to_2dp(@balance)}" if not_enough_funds?(amount)
 
-    @statement << "#{date} || || #{amount}.00 || #{@balance -= amount}.00"
+    @statement << "#{date} || || #{format_to_2dp(amount)} || #{format_to_2dp(@balance -= amount)}"
   end
 
   def show_balance
@@ -30,5 +30,9 @@ class Account
 
   def date
     Time.now.strftime('%d/%m/%Y')
+  end
+
+  def format_to_2dp(amount)
+    '%.2f' % amount
   end
 end
