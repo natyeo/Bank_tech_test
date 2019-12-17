@@ -1,5 +1,5 @@
 class Account
-  DEFAULT_BAL = 0
+  DEFAULT_BAL = 0.0
 
   attr_reader :statement
 
@@ -9,13 +9,13 @@ class Account
   end
 
   def deposit(amount)
-    @statement << "#{date} || #{format_to_2dp(amount)} || || #{format_to_2dp(@balance += amount)}"
+    @statement << { date: Time.now, transaction: :deposit, amount: amount, balance: @balance += amount }
   end
 
   def withdraw(amount)
-    raise "Not enough funds, current balance: #{format_to_2dp(@balance)}" if not_enough_funds?(amount)
+    raise "Not enough funds, current balance: £#{@balance}" if not_enough_funds?(amount)
 
-    @statement << "#{date} || || #{format_to_2dp(amount)} || #{format_to_2dp(@balance -= amount)}"
+    @statement << { date: Time.now, transaction: :withdrawal, amount: amount, balance: @balance -= amount }
   end
 
   def show_balance
@@ -26,13 +26,5 @@ class Account
 
   def not_enough_funds?(amount)
     amount > @balance
-  end
-
-  def date
-    Time.now.strftime('%d/%m/%Y')
-  end
-
-  def format_to_2dp(amount)
-    '%.2f' % amount
   end
 end

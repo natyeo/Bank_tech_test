@@ -47,4 +47,6 @@ date || credit || debit || balance
  ```
 
  ### My approach
-- Structured code into two classes: one to handle inflows and outflows and one to handle printing the account statement to ensure cohesion
+- I structured my code into two classes: one to handle the account balance and another to handle the account statement. This was done to ensure as high cohesion as possible.
+- 
+- I kept formatting of time and amounts in private methods to enhance ease of change and keep my code DRY
