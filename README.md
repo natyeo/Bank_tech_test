@@ -43,7 +43,9 @@ How to run the program and tests
  => [{:date=>2019-12-16 15:32:28 +0000, :transaction=>:deposit, :amount=>1000, :balance=>1000.0}, {:date=>2019-12-16 15:32:28 +0000, :transaction=>:withdrawal, :amount=>500.0, :balance=>500.0}]
 
 2.6.3 :005 > s.print
- => "date || credit || debit || balance\n16/12/2019 || || 500.00 || 500.00\n16/12/2019 || 1000.00 || || 1000.00"
+ => "date || credit || debit || balance
+     16/12/2019 || || 500.00 || 500.00
+     16/12/2019 || 1000.00 || || 1000.00"
 
  ```
 
@@ -53,7 +55,7 @@ My approach
 
 - The Account class is initialised with a default account balance of 0.0 and has a 'balance' attribute which updates when the deposit and withdrawal methods are called. It also has a 'statement' attribute which stores the history of transactions (with information about the date, amount, transaction type, balance) in an array of hashes.
 
-- The Statement class takes an Account object upon initialisation. When the 'print' method is called, the account statement is injected into a format method which turns the array of hashes into the required format. This is to ensure that methods are each only responsible for a single thing. 
+- The Statement class takes an Account object upon initialisation. When the 'print' method is called, the account statement is injected into a format method which turns the array of hashes into the required format. This is to ensure that methods are each only responsible for a single thing.
 
 - I used variables and private methods where appropriate (for example for the formatting of time) to enhance ease of change and keep my code DRY.
 
