@@ -1,11 +1,12 @@
+require_relative 'statement'
+
 class Account
   DEFAULT_BAL = 0.0
 
-  attr_reader :statement
-
-  def initialize(balance = DEFAULT_BAL)
+  def initialize(balance = DEFAULT_BAL, statement = Statement.new)
     @balance = balance
-    @statement = []
+    @transactions = []
+    @statement = statement
   end
 
   def deposit(amount)
@@ -22,10 +23,14 @@ class Account
 
   def create_transaction(deposit: nil, withdraw: nil)
     if deposit
-      @statement << { date: Time.now, transaction: :deposit, amount: deposit, balance: @balance }
+      @transactions << { date: Time.now, transaction: :deposit, amount: deposit, balance: @balance }
     elsif withdraw
-      @statement << { date: Time.now, transaction: :withdrawal, amount: withdraw, balance: @balance }
+      @transactions << { date: Time.now, transaction: :withdrawal, amount: withdraw, balance: @balance }
     end
+  end
+
+  def print_statement
+    @statement.printer(@transactions)
   end
 
   private

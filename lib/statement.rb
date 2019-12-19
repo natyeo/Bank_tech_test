@@ -1,14 +1,9 @@
-require_relative 'account'
 class Statement
 
   HEADER = "date || credit || debit || balance\n"
 
-  def initialize(account)
-    @account = account
-  end
-
-  def format_statement(statement)
-    statement.map do |entry|
+  def formatter(transactions)
+    transactions.map do |entry|
       date = format_date(entry[:date])
       amount = format_to_2dp(entry[:amount])
       balance = format_to_2dp(entry[:balance])
@@ -21,8 +16,8 @@ class Statement
     end
   end
 
-  def print_statement
-    entries = format_statement(@account.statement)
+  def printer(transactions)
+    entries = formatter(transactions)
     print HEADER + entries.reverse.join("\n")
   end
 
