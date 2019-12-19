@@ -51,7 +51,7 @@ How to run the program and tests
 
 My approach
 ------------
-- I structured my code into two classes: an Account class to keep track of deposits, withdrawals and the account balance, and a Statement class to handle formatting and printing of the account statement. This was done to ensure as high cohesion as possible.
+- I structured my code into two classes: an Account class to keep track of deposits, withdrawals and the account balance, and a Statement class to handle formatting and printing of the account statement. This was done to ensure as high cohesion as possible and separate the concern of display from logic.
 
 - The Account class is initialised with a default account balance of 0.0 and has a 'balance' attribute which updates when the deposit and withdrawal methods are called. It also has a 'statement' attribute which stores the history of transactions (with information about the date, amount, transaction type, balance) in an array of hashes.
 
