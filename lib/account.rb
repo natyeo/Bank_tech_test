@@ -21,14 +21,6 @@ class Account
     create_transaction(withdraw: amount)
   end
 
-  def create_transaction(deposit: nil, withdraw: nil)
-    if deposit
-      @transactions << { date: Time.now, transaction: :deposit, amount: deposit, balance: @balance }
-    elsif withdraw
-      @transactions << { date: Time.now, transaction: :withdrawal, amount: withdraw, balance: @balance }
-    end
-  end
-
   def print_statement
     @statement.printer(@transactions)
   end
@@ -37,5 +29,13 @@ class Account
 
   def not_enough_funds?(amount)
     amount > @balance
+  end
+
+  def create_transaction(deposit: nil, withdraw: nil)
+    if deposit
+      @transactions << { date: Time.now, transaction: :deposit, amount: deposit, balance: @balance }
+    elsif withdraw
+      @transactions << { date: Time.now, transaction: :withdrawal, amount: withdraw, balance: @balance }
+    end
   end
 end
